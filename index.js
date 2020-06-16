@@ -1,6 +1,10 @@
 function timesig() {
-    var topNum = parseInt(ttop.value);
-    var bottomNum = parseInt(bottom.value);
+    var topNum = parseInt(topN.value);
+    var bottomNum = parseInt(bottomN.value);
+    if (!topNum || !bottomNum){
+        result.textContent = "Please enter a valid top and bottom number, and string"
+        return
+    }
     var content = myString.value.toLowerCase().split("")
     var newString = [];
     for (var i = 0; i < content.length; i++) {
@@ -21,16 +25,11 @@ function timesig() {
     result.textContent = newString.join("")
 }
 
-var ttop = document.getElementById('T');
-var bottom = document.getElementById('B');
+var topN = document.getElementById('T');
+var bottomN = document.getElementById('B');
 var myString = document.getElementById("myString");
 var result = document.getElementById('stdout');
+topN.addEventListener("input", timesig);
+bottomN.addEventListener("input", timesig);
 myString.addEventListener("input", timesig);
-
-/*
-3/4
-e v i r y x h i r g
-0 1 2 3 4 5 6 7 8 9 
-o o x o o x o o x o
-index + 1 % 3 -
-*/
+timesig()
